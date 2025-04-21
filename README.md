@@ -27,17 +27,17 @@ sudo apt-get install flex bison -y
 
 
 ## 🔨 How to Compile and Run (Manualy)
-# Step 1: Generate scanner
- - lex part1.l
+ ### Step 1: Generate scanner
+  - lex part1.l
 
-# Step 2: Generate parser
- - bison part1.y
-
-# Step 3: Compile everything
- - cc -o p1 y.tab.c -ll -ly
-
-# Step 4: Run with input test file
- - ./p1 < test1.t
+ ### Step 2: Generate parser
+  - bison part1.y
+ 
+ ### Step 3: Compile everything
+  - cc -o p1 y.tab.c -ll -ly
+ 
+ ### Step 4: Run with input test file
+  - ./p1 < test1.t
 
 
 ## 🚀 Compile and Run All Tests Automatically
