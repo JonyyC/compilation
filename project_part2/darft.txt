@@ -1,0 +1,71 @@
+char * eval_expression(char*op, node *e1, node* e2);
+int check_op_in_arr(char *op, const char *ops_args[]);
+char * return_tree_type(node *tree);
+
+
+
+// , ">", "<", "==", ">=", "<=", "!=", "and", "or", "not", "||", "[]", "*id", "&id", "*()", "&[]"
+char * eval_expression(char* op, node *e1, node* e2){
+    const char *regular_ops[] = {"+", "-", "*", "/"}; // must be between INT,REAL
+    const char *compare_ops[] = {">", "<", ">=", "<="}; // must be between  INT,REAL ?
+    const char *compare_ops_null[] = { "==", "!="};// can be between INT,REAL, CHAR, NULL, STRING?
+    const char *bool_ops[] = {"and", "or", "not"}; // must be between bool, return BOOL
+    const char *string_ops_char[] = {"[]","&[]"}; // only on string. return CHAR
+    const char *string_ops_int[] = {"||"}; // only on string. return INT
+    const char *ptr_ops[] = {"*id"}; // must be on ID->PTR type, return the type of the ID
+    const char *address_ops[] = {"&id"}; // can INT,REAL,CHAR,STRING points to var (type) (return should be the same type) 
+    const char *dereferenced_ops[] = {"*()"}; // Must be between ID (id should be STRING, ?CHAR*?) and INT, returns CHAR
+    if(check_op_in_arr(op, regular_ops)){
+        char *new_type =  handle_regular_op(e1, e2);
+
+    }else if(check_op_in_arr(op, compare_ops)){
+
+    }else if(check_op_in_arr(op, compare_ops_null)){
+
+    }else if(check_op_in_arr(op, bool_ops)){
+
+    }else if(check_op_in_arr(op, string_ops_char)){
+
+    }else if(check_op_in_arr(op, string_ops_int)){
+
+    }else if(check_op_in_arr(op, ptr_ops)){
+
+    }else if(check_op_in_arr(op, address_ops)){
+
+    }else { // op must be "*()"
+
+    }
+
+}
+char * handle_regular_op(node *e1,node * e2){
+    if(e1 == NULL || e2 == NULL) yyerror("Error reading parser");
+    char *e1_type =  return_tree_type(e1); // check if they ID or value_literal (id lookup inside)
+    char *e2_type =  return_tree_type(e1); // check if they ID or value_literal (id lookup inside)
+    
+}
+
+int check_op_in_arr(char *op, const char *ops_args[]){
+    int size = sizeof(*ops_args)/sizeof(ops_args[0]);
+    for(int i = 0 ; i < size ; i++){
+        if(strcmp(op, ops_args[i]) == 0 ){
+            return 1;
+        }
+    }
+    return 0;
+}
+// the tree can be expression (2 nodes) or ID/VALUE/NULL (1 node)
+char * return_tree_type(node *tree){
+    if(tree->num_nodes == 2){ // expression
+        return tree->nodes[2]->token;
+    }
+    if(tree->num_nodes == 1){
+        char *id = tree->nodes[0]->token;
+        if(strcmp(id,"ID") == 0){
+            lookup_var(id, 0);
+        }
+        return id;
+    }
+
+    printf("Should not print that! 1");
+    return NULL;
+}
