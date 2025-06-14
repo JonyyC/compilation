@@ -4,8 +4,8 @@ This project is a basic compiler written using **Lex (Flex)** and **Yacc (Bison)
 
 ## 🧩 Project Structure
 
-- `part1.l` – Lex file (scanner)
-- `part1.y` – Yacc/Bison file (parser)
+- `part#.l` – Lex file (scanner)
+- `part#.y` – Yacc/Bison file (parser) (Replace # with the part number)
 - `test_cases/` – Directory containing sample test cases
 - `run_all_tests.sh` – Bash script to compile the project and run all tests automatically
 - `project-language` – Description of the language's grammar and syntax rules
